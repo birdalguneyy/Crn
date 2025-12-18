@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>💛</title>
+  <style>
+    :root{
+      --bg1:#0b1020; --bg2:#141a2f; --card:#0f1630cc;
+      --text:#eef2ff; --muted:#b7c0ffcc; --accent:#ffd166;
+      --ok:#2ee59d; --bad:#ff5c7a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; display:grid; place-items:center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 20% 15%, #2a3cff55, transparent 60%),
+                  radial-gradient(900px 500px at 80% 80%, #ff6b6b44, transparent 60%),
+                  linear-gradient(180deg,var(--bg1),var(--bg2));
+      overflow:hidden;
+    }
+    .waves{
+      position:fixed; inset:-40% -30%;
+      background:
+        radial-gradient(closest-side at 20% 30%, #5ad7ff22, transparent 60%),
+        radial-gradient(closest-side at 60% 55%, #5ad7ff1a, transparent 60%),
+        radial-gradient(closest-side at 85% 25%, #5ad7ff14, transparent 60%);
+      filter: blur(12px);
+      opacity:.6;
+      animation: drift 10s ease-in-out infinite alternate;
+      pointer-events:none;
+      z-index:0;
+    }
+    @keyframes drift{
+      from{transform:translate3d(-12px, 8px, 0) scale(1.02)}
+      to{transform:translate3d(12px, -10px, 0) scale(1.06)}
+    }
+    .orb{position:absolute; filter:blur(40px); opacity:.5; border-radius:999px; z-index:0}
+    .orb.one{width:280px;height:280px;left:-60px;top:40px;background:#6c63ff}
+    .orb.two{width:340px;height:340px;right:-90px;bottom:-70px;background:#ff7aa2}
+
+    .wrap{width:min(560px,92vw); padding:22px; position:relative; z-index:1}
+    .card{
+      background:var(--card);
+      border:1px solid #ffffff1a;
+      border-radius:22px;
+      padding:22px;
+      box-shadow: 0 12px 40px #00000055;
+      backdrop-filter: blur(10px);
+    }
+    h1{margin:0 0 8px; font-size:20px; font-weight:700; letter-spacing:.2px}
+    p{margin:8px 0; color:var(--muted); line-height:1.45}
+    .row{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap}
+    input{
+      flex:1; min-width:200px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid #ffffff22;
+      background:#0b1020aa;
+      color:var(--text);
+      outline:none;
+      font-size:16px;
+    }
+    input::placeholder{color:#b7c0ff88}
+    button{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid #ffffff22;
+      background:#ffffff12;
+      color:var(--text);
+      cursor:pointer;
+      font-weight:700;
+      font-size:15px;
+    }
+    button:hover{background:#ffffff1a}
+    .hint{margin-top:10px; font-size:13px; color:#b7c0ff99}
+    .status{
+      margin-top:12px; font-size:14px;
+      display:flex; align-items:center; gap:10px; min-height:22px;
+    }
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.ok{background:var(--ok)}
+    .dot.bad{background:var(--bad)}
+
+    .reveal{
+      margin-top:18px;
+      border-radius:20px;
+      padding:18px;
+      border:1px solid #ffffff22;
+      background: linear-gradient(135deg, #ffd16622, #ffffff08);
+      position:relative;
+      overflow:hidden;
+    }
+    .pin{
+      position:absolute; right:14px; top:14px;
+      width:18px; height:18px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow: 0 0 0 0 rgba(255,209,102,.45);
+      animation: pulse 1.6s ease-out infinite;
+    }
+    .pin::after{
+      content:"";
+      position:absolute; left:50%; top:50%;
+      width:7px; height:7px;
+      background:#0b1020cc;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(255,209,102,.45); transform:translateY(0)}
+      70%{box-shadow:0 0 0 18px rgba(255,209,102,0); transform:translateY(-1px)}
+      100%{box-shadow:0 0 0 0 rgba(255,209,102,0); transform:translateY(0)}
+    }
+
+    .big{font-size:28px; font-weight:900; letter-spacing:.2px; margin:0}
+    .sub{margin:10px 0 0; color:#eef2ffcc; font-size:14px}
+    .mini{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      font-size:12px; color:#eef2ffcc;
+      border:1px solid #ffffff22; background:#00000022;
+      padding:8px 10px; border-radius:999px;
+    }
+    .fade{animation: pop .45s ease-out both}
+    @keyframes pop{from{transform:translateY(8px); opacity:0} to{transform:translateY(0); opacity:1}}
+
+    .blurred{filter: blur(10px); pointer-events:none; user-select:none}
+    .timer{margin-top:10px; font-size:12px; color:#eef2ffbb}
+    .lock{
+      text-align:center; padding:18px;
+      border:1px dashed #ffffff33; border-radius:18px;
+      color:#eef2ffcc; background:#0000001a;
+    }
+  </style>
+</head>
+<body>
+  <div class="waves"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Bir anı kapısı</h1>
+      <p>İpucu: Kadıköy sahil… İSPARK’ın olduğu taraftan yürürken.</p>
+
+      <div id="lockedMessage" class="lock" style="display:none">
+        Bu sayfa “tek görülmelik”ti 🙂<br/>
+        Yeniden açmak istersen: <span class="pill">?reset=1</span>
+      </div>
+
+      <div id="gate">
+        <div class="row">
+          <input id="code" inputmode="numeric" autocomplete="off" placeholder="Şifre (ör: 28052024)" />
+          <button id="btn">Aç</button>
+        </div>
+        <div class="hint">Tarih formatı: 28.05.2024 → <b>28052024</b></div>
+
+        <div class="status" id="status"></div>
+
+        <div id="revealWrap" style="display:none" class="fade">
+          <div class="reveal" id="reveal">
+            <div class="pin" title="Kadıköy"></div>
+            <p class="big" id="msg">Seviyorum seni Ceren.</p>
+            <p class="sub">28.05.2024 — Kadıköy sahil (İSPARK 1000 araçlık tarafı)</p>
+            <div class="mini">
+              <span class="pill">Bir kez gülümsetmek için</span>
+              <span class="pill">💛</span>
+            </div>
+            <div class="timer" id="timer"></div>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <button id="copy">Metni kopyala</button>
+            <button id="close">Kapat</button>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:16px; font-size:12px; color:#b7c0ff88">
+        Not: Yayınlayınca link olur.
+      </p>
+    </div>
+  </div>
+
+<script>
+  const KEY = "one_time_seen_ceren_28052024";
+  const PASS = "28052024";
+
+  const qs = new URLSearchParams(location.search);
+  if (qs.get("reset") === "1") localStorage.removeItem(KEY);
+
+  const lockedMessage = document.getElementById("lockedMessage");
+  const code = document.getElementById("code");
+  const btn = document.getElementById("btn");
+  const status = document.getElementById("status");
+  const revealWrap = document.getElementById("revealWrap");
+  const reveal = document.getElementById("reveal");
+  const timerEl = document.getElementById("timer");
+  const copyBtn = document.getElementById("copy");
+  const closeBtn = document.getElementById("close");
+
+  if (localStorage.getItem(KEY) === "1") lockedMessage.style.display = "block";
+
+  function setStatus(ok, text){
+    status.innerHTML = `
+      <span class="dot ${ok ? "ok":"bad"}"></span>
+      <span>${text}</span>
+    `;
+  }
+
+  function normalize(v){ return (v || "").replace(/\D/g,"").slice(0,8); }
+
+  function chime(){
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = "sine";
+      o.frequency.value = 659;
+      g.gain.value = 0.0001;
+      o.connect(g); g.connect(ctx.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 0.03);
+      o.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.28);
+      o.stop(ctx.currentTime + 0.3);
+      setTimeout(()=>ctx.close(), 400);
+    } catch {}
+  }
+
+  function startOneTimeCountdown(){
+    let t = 10;
+    timerEl.textContent = `Mesaj ${t} saniye sonra “tek görülmelik” olacak…`;
+    const iv = setInterval(() => {
+      t--;
+      if (t <= 0){
+        clearInterval(iv);
+        reveal.classList.add("blurred");
+        localStorage.setItem(KEY, "1");
+        timerEl.textContent = "Tamam 🙂";
+        setTimeout(() => {
+          revealWrap.style.display = "none";
+          lockedMessage.style.display = "block";
+          setStatus(true, "Gördün. Artık sadece kalpte 🙂");
+        }, 900);
+      } else {
+        timerEl.textContent = `Mesaj ${t} saniye sonra “tek görülmelik” olacak…`;
+      }
+    }, 1000);
+  }
+
+  function openGate(){
+    const v = normalize(code.value);
+    code.value = v;
+
+    if (localStorage.getItem(KEY) === "1") {
+      lockedMessage.style.display = "block";
+      setStatus(false, "Bu sayfa daha önce açılmış.");
+      return;
+    }
+
+    if (v === PASS){
+      setStatus(true, "Doğru. Hazır mısın?");
+      revealWrap.style.display = "block";
+      chime();
+      startOneTimeCountdown();
+    } else {
+      setStatus(false, "Yanlış şifre. İpucu: o günün tarihi 🙂");
+    }
+  }
+
+  btn.addEventListener("click", openGate);
+  code.addEventListener("keydown", (e)=>{ if(e.key==="Enter") openGate(); });
+
+  copyBtn.addEventListener("click", async ()=>{
+    try{
+      await navigator.clipboard.writeText("Seviyorum seni Ceren.");
+      setStatus(true, "Kopyalandı.");
+    } catch {
+      setStatus(false, "Kopyalanamadı.");
+    }
+  });
+
+  closeBtn.addEventListener("click", ()=>{
+    revealWrap.style.display = "none";
+    setStatus(true, "Kapatıldı.");
+  });
+</script>
+</body>
+</html>
